@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>طلب توظيف</title>
+  <title>نموذج طلب توظيف</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -15,7 +15,7 @@
 
     .form-container {
       background-color: #ffffff;
-      max-width: 600px;
+      max-width: 650px;
       margin: auto;
       padding: 30px 25px;
       border-radius: 12px;
@@ -56,11 +56,6 @@
       height: 120px;
     }
 
-    input[type="file"] {
-      padding: 8px;
-      background-color: #fafafa;
-    }
-
     button {
       width: 100%;
       padding: 14px;
@@ -78,57 +73,58 @@
     button:hover {
       background: linear-gradient(90deg, #0056b3, #003d80);
     }
-
-    .note {
-      font-size: 13px;
-      color: #777;
-      margin-top: -5px;
-    }
   </style>
 </head>
 <body>
 
 <div class="form-container">
   <h2>نموذج تقديم طلب توظيف</h2>
-  <form action="https://formspree.io/f/xanebrrb" method="POST" enctype="multipart/form-data" onsubmit="redirectAfterSubmit()">
+  <form id="jobForm">
     
-    <label for="name">الاسم الكامل</label>
-    <input type="text" id="name" name="الاسم الكامل" required>
+    <label>الاسم الكامل</label>
+    <input type="text" name="name" required>
 
-    <label for="phone">رقم الهاتف</label>
-    <input type="tel" id="phone" name="رقم الهاتف" required>
+    <label>رقم الهاتف</label>
+    <input type="tel" name="phone" required>
 
-    <label for="email">البريد الإلكتروني</label>
-    <input type="email" id="email" name="البريد الإلكتروني" required>
+    <label>البريد الإلكتروني</label>
+    <input type="email" name="email" required>
 
-    <label for="address">العنوان</label>
-    <input type="text" id="address" name="العنوان">
+    <label>العنوان</label>
+    <input type="text" name="address">
 
-    <label for="qualification">المؤهل العلمي</label>
-    <input type="text" id="qualification" name="المؤهل العلمي">
+    <label>المؤهل العلمي</label>
+    <input type="text" name="qualification">
 
-    <label for="position">الوظيفة المتقدم لها</label>
-    <input type="text" id="position" name="الوظيفة المتقدم لها" required>
+    <label>الوظيفة المتقدم لها</label>
+    <input type="text" name="position" required>
 
-    <label for="birthdate">تاريخ الميلاد</label>
-    <input type="date" id="birthdate" name="تاريخ الميلاد">
+    <label>تاريخ الميلاد</label>
+    <input type="date" name="birthdate">
 
-    <label for="photo">الصورة الشخصية <span class="note">(PNG أو JPG)</span></label>
-    <input type="file" id="photo" name="الصورة الشخصية" accept="image/*">
-
-    <label for="about">عرّف عن نفسك</label>
-    <textarea id="about" name="نبذة عن المتقدم" placeholder="اكتب نبذة قصيرة عن مهاراتك وخبراتك..." required></textarea>
+    <label>عرّف عن نفسك</label>
+    <textarea name="about" required></textarea>
 
     <button type="submit">إرسال الطلب</button>
   </form>
 </div>
 
 <script>
-  function redirectAfterSubmit() {
-    setTimeout(function () {
-      window.location.href = "thank-you.html";
-    }, 1000);
-  }
+  const form = document.getElementById("jobForm");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch("https://script.google.com/macros/s/AKfycbzQsuMT1XBzCUb0F7ERT0o_fN5HGTGCNQ20P5NMSmL4bRSFSpt1bcHk1Odw77IjewLd/exec", {
+      method: "POST",
+      body: data
+    }).then(response => {
+      if (response.ok) {
+        window.location.href = "thank-you.html";
+      } else {
+        alert("حدث خطأ أثناء الإرسال. حاول مرة أخرى.");
+      }
+    });
+  });
 </script>
 
 </body>
