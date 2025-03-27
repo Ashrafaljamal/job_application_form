@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>طلب توظيف</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #f1f4f9, #dff1ff);
+      margin: 0;
+      padding: 30px;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    input[type="file"] {
+      padding: 8px;
+      background-color: #fafafa;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #007bff, #0056b3);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #0056b3, #003d80);
+    }
+
+    .note {
+      font-size: 13px;
+      color: #777;
+      margin-top: -5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>نموذج تقديم طلب توظيف</h2>
+  <form action="https://formspree.io/f/xyyreqpo" method="POST" enctype="multipart/form-data" onsubmit="redirectAfterSubmit()">
+    
+    <label for="name">الاسم الكامل</label>
+    <input type="text" id="name" name="الاسم الكامل" required>
+
+    <label for="phone">رقم الهاتف</label>
+    <input type="tel" id="phone" name="رقم الهاتف" required>
+
+    <label for="email">البريد الإلكتروني</label>
+    <input type="email" id="email" name="البريد الإلكتروني" required>
+
+    <label for="address">العنوان</label>
+    <input type="text" id="address" name="العنوان">
+
+    <label for="qualification">المؤهل العلمي</label>
+    <input type="text" id="qualification" name="المؤهل العلمي">
+
+    <label for="position">الوظيفة المتقدم لها</label>
+    <input type="text" id="position" name="الوظيفة المتقدم لها" required>
+
+    <label for="birthdate">تاريخ الميلاد</label>
+    <input type="date" id="birthdate" name="تاريخ الميلاد">
+
+    <label for="photo">الصورة الشخصية <span class="note">(PNG أو JPG)</span></label>
+    <input type="file" id="photo" name="الصورة الشخصية" accept="image/*">
+
+    <label for="about">عرّف عن نفسك</label>
+    <textarea id="about" name="نبذة عن المتقدم" placeholder="اكتب نبذة قصيرة عن مهاراتك وخبراتك..." required></textarea>
+
+    <button type="submit">إرسال الطلب</button>
+  </form>
+</div>
+
+<script>
+  function redirectAfterSubmit() {
+    setTimeout(function () {
+      window.location.href = "thank-you.html";
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
